@@ -12,12 +12,13 @@ public class HelloAntlr {
         // 再使用 tokens 构造语法分析器 parser,至此已经完成词法分析和语法分析的准备工作
         HelloParser parser = new HelloParser(tokens);
         // 最终调用语法分析器的规则 r（这个是我们在Hello.g4里面定义的那个规则），完成对表达式的验证
-        parser.r();
+        HelloParser.RContext rContext = parser.r();
+        System.out.println(rContext);
     }
 
     public static void main(String[] args) throws Exception{
         String[] testStr={
-                "hello world1",
+                "Hello world1 d",
                 "hello world2",
                 "hi world3"
         };
