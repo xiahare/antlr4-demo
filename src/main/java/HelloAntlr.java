@@ -1,5 +1,6 @@
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 public class HelloAntlr {
     public static void run(String expr) throws Exception{
@@ -16,8 +17,11 @@ public class HelloAntlr {
 
         HelloLengthVisitor visitor = new HelloLengthVisitor();
 
-        System.out.println(visitor.visitR(rContext));
+        System.out.println("visitor:" + visitor.visitR(rContext));
         System.out.println(rContext.toStringTree(parser));
+
+        ParseTreeWalker walker = new ParseTreeWalker();
+        walker.walk(new HelloLengthListener(), rContext);
     }
 
     public static void main(String[] args) throws Exception{
