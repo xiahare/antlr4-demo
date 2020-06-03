@@ -13,7 +13,11 @@ public class HelloAntlr {
         HelloParser parser = new HelloParser(tokens);
         // 最终调用语法分析器的规则 r（这个是我们在Hello.g4里面定义的那个规则），完成对表达式的验证
         HelloParser.RContext rContext = parser.r();
-        System.out.println(rContext);
+
+        HelloLengthVisitor visitor = new HelloLengthVisitor();
+
+        System.out.println(visitor.visitR(rContext));
+        System.out.println(rContext.toStringTree(parser));
     }
 
     public static void main(String[] args) throws Exception{
